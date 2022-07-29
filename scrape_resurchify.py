@@ -76,6 +76,16 @@ class Resurchify_scraper():
             'Overall_rank': overall_rank_r,
             'Link': link_r
             })
-        df_resurchify.to_csv(r"C:\Users\DELL\Desktop\test\resurchify.csv")
+
+        ex = df_resurchify.to_dict('records')
+
+        import dbm, json
+        with dbm.open('resurchify', 'c') as d:
+            d[str(183)] = json.dumps(ex)
+            d.sync()
 
         return(print("Resurchify scrapped Successfully"))
+
+if __name__ == "__main__":
+    obj1 = Resurchify_scraper()
+    obj1.scrape()

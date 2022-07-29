@@ -93,6 +93,15 @@ class Gscholar_scraper():
             df['page_no'] = i
             total_df = pd.concat([total_df,df]).drop_duplicates()
 
-        total_df.to_csv(r"C:\Users\DELL\Desktop\test\test_gs.csv") 
+        ex = total_df.to_dict('records')
 
-        return total_df       
+        import dbm, json
+        with dbm.open('google_scholar', 'c') as d:
+            d[str(183)] = json.dumps(ex)
+            d.sync()
+
+        return total_df
+
+if __name__ == "__main__":
+    obj1 = Gscholar_scraper()
+    obj1.df_gen()

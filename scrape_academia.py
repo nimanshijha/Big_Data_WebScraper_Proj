@@ -88,8 +88,17 @@ class Academia_scraper():
         #Create a DataFrame object
         df_academia = pd.DataFrame(  users, 
                             columns = ['Field of Research', 'No of Papers'],
-                            index=['1', '2','3','4']) 
-        df_academia
-        df_academia.to_csv(r"C:\Users\DELL\Desktop\test\academia_edu.csv")
+                            index=['1', '2','3','4'])
+
+        ex = df_academia.to_dict('records')
+
+        import dbm, json
+        with dbm.open('Academia', 'c') as d:
+            d[str(183)] = json.dumps(ex)
+            d.sync()
 
         return(print("Academia.edu scrapped Successfully"))
+
+if __name__ == "__main__":
+    obj1 = Academia_scraper()
+    obj1.scrape()

@@ -2,6 +2,7 @@ from scrape_trends import *
 from scrape_academia import *
 from scrape_google_scholar import *
 from scrape_resurchify import *
+from arxiv import arxiv as arxiv
 
 
 def main():
@@ -20,6 +21,9 @@ def main():
     #scrape resurchify
     obj4 = Resurchify_scraper()
     obj4.scrape()
+
+    #Scrape Arxiv
+    arxiv.run()
 
     
 if __name__ == "__main__":

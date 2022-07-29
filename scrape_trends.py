@@ -23,6 +23,15 @@ class Trend_scraper():
 
         self.df = pd.DataFrame(nw.items(),columns =['Country', 'Big_Data'])
         self.df = self.df[self.df.Big_Data!=0]
-        self.df.to_csv(r'C:\Users\DELL\Desktop\test\google_trends.csv')
+        ex = self.df.to_dict('index')
+
+        import dbm, json
+        with dbm.open('google_trends', 'c') as d:
+            d[str(183)] = json.dumps(ex)
+            d.sync()
 
         return(print("Google Trends scrapped Successfully"))
+
+if __name__ == "__main__":
+    obj1 = Trend_scraper()
+    obj1.scrape()
