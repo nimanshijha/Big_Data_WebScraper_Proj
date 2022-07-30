@@ -1,8 +1,8 @@
-from scrape_trends import *
-from scrape_academia import *
-from scrape_google_scholar import *
-from scrape_resurchify import *
-from arxiv import arxiv as arxiv
+from scrapers.scrape_trends import *
+from scrapers.scrape_academia import *
+from scrapers.scrape_google_scholar import *
+from scrapers.scrape_resurchify import *
+from scrapers.arxiv import arxiv as arxiv
 
 
 def main():
